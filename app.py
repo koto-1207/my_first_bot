@@ -35,11 +35,10 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    recieved_message = event.message.text
     user = line_bot_api.get_profile(event.source.user_id)
 
     current_time = datetime.now().strftime("%Y年%m月%d日 %H:%M:%S")
-    send_message = f"{user.display_name}さん、こんにちは！\n\n{recieved_message}\n今日はどうしたの\n\n受信時刻: {current_time}"
+    send_message = f"{user.display_name}さん、こんにちは！\n\n今日はどうしたの\n\n受信時刻: {current_time}"
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=send_message))
 
 
